@@ -15,5 +15,6 @@ button1.grid(row=0, column=0, padx=10, pady=10)
 button2 = tk.Button(root, text=2, command=lambda:on_button_click(2))
 button2.grid(row=0, column=1, padx=10, pady=10)
 
-
+button3 = tk.Button(root, text=3, command=lambda:on_button_click(3))
+button3.grid(row=0, column=2, padx=10, pady=10)
 root.mainloop()

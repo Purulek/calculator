@@ -1,13 +1,15 @@
 import tkinter as tk
 
 
+operation =[]
+numbers =[]
+
 def on_button_click_number(button_name):
-    return button_name
+    numbers.append(button_name)
 
 
 def on_button_click_operation(button_name):
-    return button_name
-
+    operation.append(button_name)
 
 
 

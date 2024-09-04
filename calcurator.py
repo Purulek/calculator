@@ -1,18 +1,27 @@
 import tkinter as tk
-
+from tkinter import messagebox
+import math
 
 operation =[]
 numbers =[]
+number = 0
+
+    
 
 def on_button_click_number(button_name):
     numbers.append(button_name)
 
 
 def on_button_click_operation(button_name):
+    number = (''.join (numbers))
+    
     operation.append(button_name)
 
 
-
+def on_button_click_exe():
+    messagebox.showinfo("hi", number)
+    
+    
 
 root = tk.Tk()
 root.title("Calcualtor")
@@ -35,7 +44,7 @@ button_divison.grid(row=0, column=3, padx=10, pady=10)
 
 
 
-button1 = tk.Button(root, text=1, command=lambda:on_button_click_number(1))
+button1 = tk.Button(root, text=1, command=lambda:on_button_click_number("1"))
 button1.grid(row=1, column=0, padx=10, pady=10)
 
 button2 = tk.Button(root, text=2, command=lambda:on_button_click_number(2))
@@ -90,7 +99,7 @@ button_coma.grid(row=4, column=1, padx=10, pady=10)
 button_del= tk.Button(root, text="del", command=lambda:on_button_click_operation("del"))
 button_del.grid(row=4, column=2, padx=10, pady=10) 
 
-button_makes= tk.Button(root, text="=", command=lambda:on_button_click_operation("="))
+button_makes= tk.Button(root, text="=", command=lambda:on_button_click_exe())
 button_makes.grid(row=4, column=3, padx=10, pady=10) 
 
 

@@ -118,3 +118,5 @@ button_factorial= tk.Button(root, text="!", command=lambda:on_button_click_opera
 button_factorial.grid(row=5, column=3, padx=10, pady=10)
 
 root.mainloop()
+def reset (): 
+    root.mainloop()

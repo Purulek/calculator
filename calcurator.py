@@ -3,26 +3,32 @@ from tkinter import messagebox
 import math
 
 operation =[]
-numbers =[]
+numbers_before =[]
+numbers_after = []
 number = 0
 
     
 
 def on_button_click_number(button_name):
-    numbers.append(button_name)
+    numbers_before.append(button_name)
 
 
 def on_button_click_operation(button_name):
-    global number
-    number = (''.join (numbers))
-    numbers.pop()
-    numbers.append(number)
-    print(numbers)
+    global number, numbers_before, numbers_after
+    number = (''.join (numbers_before))
+    numbers_before = []
+    numbers_after.append(number)
     operation.append(button_name)
-    
+    print(numbers_after)
 
 def on_button_click_exe():
-    messagebox.showinfo("hi", number)
+    global number, numbers_before, numbers_after
+    number = (''.join (numbers_before))
+    numbers_before = []
+    numbers_after.append(number)
+    
+
+    messagebox.showinfo("hi", numbers_after)
     
     
 

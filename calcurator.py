@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import math
+import operator
 
 operation =[]
 numbers_before =[]
@@ -15,7 +16,8 @@ def on_button_click_number(button_name):
 
 def on_button_click_operation(button_name):
     global number, numbers_before, numbers_after
-    number = (''.join (numbers_before))
+    number = int(''.join (numbers_before))
+    print(number)
     numbers_before = []
     numbers_after.append(number)
     operation.append(button_name)
@@ -23,13 +25,24 @@ def on_button_click_operation(button_name):
 
 def on_button_click_exe():
     global number, numbers_before, numbers_after
-    number = (''.join (numbers_before))
+    number = int(''.join (numbers_before))
+    print(number)
+    print(numbers_after)
     numbers_before = []
     numbers_after.append(number)
+    operators = {
+        "+": operator.add,
+        "-": operator.sub,
+        "*": operator.mul,
+        "/": operator.truediv    
+    }
+    score = operators[operation[0]](numbers_after[0],numbers_after[1])
+    numbers_after.clear()
+    numbers_before.clear()
+    operation.clear()
     
+    messagebox.showinfo("hi", score)
 
-    messagebox.showinfo("hi", numbers_after)
-    
     
 
 root = tk.Tk()
@@ -62,7 +75,7 @@ button2.grid(row=1, column=1, padx=10, pady=10)
 button3 = tk.Button(root, text=3, command=lambda:on_button_click_number("3"))
 button3.grid(row=1, column=2, padx=10, pady=10) 
 
-button_multi = tk.Button(root, text="", command=lambda:on_button_click_operation(""))
+button_multi = tk.Button(root, text="", command=lambda:on_button_click_operation("*"))
 button_multi.grid(row=1, column=3, padx=10, pady=10) 
 
 

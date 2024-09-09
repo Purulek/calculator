@@ -34,7 +34,8 @@ def on_button_click_exe():
         "+": operator.add,
         "-": operator.sub,
         "*": operator.mul,
-        "/": operator.truediv    
+        "/": operator.truediv  
+
     }
     score = operators[operation[0]](numbers_after[0],numbers_after[1])
     numbers_after.clear()
@@ -43,6 +44,11 @@ def on_button_click_exe():
     
     messagebox.showinfo("hi", score)
 
+def on_button_click_restart():
+    numbers_after.clear()
+    numbers_before.clear()
+    operation.clear()
+
     
 
 root = tk.Tk()
@@ -50,7 +56,7 @@ root.title("Calcualtor")
 
 
 
-button_reset= tk.Button(root, text="res", command=lambda:on_button_click_operation("res"))
+button_reset= tk.Button(root, text="res", command=lambda:on_button_click_restart())
 button_reset.grid(row=0, column=0, padx=10, pady=10) 
 
 button_bracket= tk.Button(root, text="()", command=lambda:on_button_click_operation("()"))
@@ -130,7 +136,7 @@ button_makes.grid(row=4, column=3, padx=10, pady=10)
 button_extra= tk.Button(root, text="√", command=lambda:on_button_click_operation("√"))
 button_extra.grid(row=5, column=0, padx=10, pady=10) 
 
-button_pi= tk.Button(root, text="π", command=lambda:on_button_click_operation("π"))
+button_pi= tk.Button(root, text="π", command=lambda:on_button_click_number("3.14"))
 button_pi.grid(row=5, column=1, padx=10, pady=10) 
 
 button_expone= tk.Button(root, text="^", command=lambda:on_button_click_operation("^"))

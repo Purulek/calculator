@@ -15,19 +15,20 @@ def on_button_click_number(button_name):
 
 
 def on_button_click_operation(button_name):
-    global number, numbers_before, numbers_after
-    number = int(''.join (numbers_before))
-    print(number)
-    numbers_before = []
-    numbers_after.append(number)
+    if button_name == "√" or  button_name =="!":
+        pass
+    else:
+
+        global number, numbers_before, numbers_after
+        number = float(''.join (numbers_before))
+        numbers_before = []
+        numbers_after.append(number)
     operation.append(button_name)
-    print(numbers_after)
+
 
 def on_button_click_exe():
     global number, numbers_before, numbers_after
-    number = int(''.join (numbers_before))
-    print(number)
-    print(numbers_after)
+    number = float(''.join (numbers_before))
     numbers_before = []
     numbers_after.append(number)
     operators = {
@@ -37,12 +38,41 @@ def on_button_click_exe():
         "/": operator.truediv  
 
     }
-    score = operators[operation[0]](numbers_after[0],numbers_after[1])
+    i = 0
+    score = 0
+    for oper in operation:
+        print(0)
+        print (i)
+        if oper == "√":
+            score += math.sqrt(numbers_after[i])
+            print(1)
+            
+        elif oper == "^":
+            score += (numbers_after[i]) ** numbers_after[i+1]
+            print(2)
+        elif oper == "!":
+            score += math.factorial(int(numbers_after[i]))
+            print(3)
+        elif i == 0:
+            i += 1
+            score = operators[oper](numbers_after[0],numbers_after[i])
+            print(4)
+
+        elif i > 1:
+            score = operators[oper](score, numbers_after[i])
+            print(15)
+        i += 1
+
+        
+
+    
+    
+    
     numbers_after.clear()
     numbers_before.clear()
     operation.clear()
     
-    messagebox.showinfo("hi", score)
+    messagebox.showinfo("result", score)
 
 def on_button_click_restart():
     numbers_after.clear()
@@ -65,7 +95,7 @@ button_bracket.grid(row=0, column=1, padx=10, pady=10)
 button_precent= tk.Button(root, text="%", command=lambda:on_button_click_operation("%"))
 button_precent.grid(row=0, column=2, padx=10, pady=10) 
 
-button_divison= tk.Button(root, text=":", command=lambda:on_button_click_operation(":"))
+button_divison= tk.Button(root, text="/", command=lambda:on_button_click_operation("/"))
 button_divison.grid(row=0, column=3, padx=10, pady=10)
 
 
@@ -81,7 +111,7 @@ button2.grid(row=1, column=1, padx=10, pady=10)
 button3 = tk.Button(root, text=3, command=lambda:on_button_click_number("3"))
 button3.grid(row=1, column=2, padx=10, pady=10) 
 
-button_multi = tk.Button(root, text="", command=lambda:on_button_click_operation("*"))
+button_multi = tk.Button(root, text="*", command=lambda:on_button_click_operation("*"))
 button_multi.grid(row=1, column=3, padx=10, pady=10) 
 
 

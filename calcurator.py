@@ -41,26 +41,24 @@ def on_button_click_exe():
     i = 0
     score = 0
     for oper in operation:
-        print(0)
-        print (i)
+
         if oper == "√":
-            score += math.sqrt(numbers_after[i])
-            print(1)
+            score += math.sqrt(numbers_after[i])  
             
         elif oper == "^":
             score += (numbers_after[i]) ** numbers_after[i+1]
-            print(2)
+            
         elif oper == "!":
             score += math.factorial(int(numbers_after[i]))
-            print(3)
+            
         elif i == 0:
             i += 1
             score = operators[oper](numbers_after[0],numbers_after[i])
-            print(4)
+            
 
         elif i > 1:
             score = operators[oper](score, numbers_after[i])
-            print(15)
+            
         i += 1
 
         
@@ -89,8 +87,9 @@ root.title("Calcualtor")
 button_reset= tk.Button(root, text="res", command=lambda:on_button_click_restart())
 button_reset.grid(row=0, column=0, padx=10, pady=10) 
 
-button_bracket= tk.Button(root, text="()", command=lambda:on_button_click_operation("()"))
-button_bracket.grid(row=0, column=1, padx=10, pady=10) 
+
+button_factorial= tk.Button(root, text="!", command=lambda:on_button_click_operation("!"))
+button_factorial.grid(row=0, column=1, padx=10, pady=10)
 
 button_precent= tk.Button(root, text="%", command=lambda:on_button_click_operation("%"))
 button_precent.grid(row=0, column=2, padx=10, pady=10) 
@@ -154,8 +153,8 @@ button0.grid(row=4, column=0, padx=10, pady=10)
 button_coma= tk.Button(root, text=",", command=lambda:on_button_click_operation(","))
 button_coma.grid(row=4, column=1, padx=10, pady=10) 
 
-button_del= tk.Button(root, text="del", command=lambda:on_button_click_operation("del"))
-button_del.grid(row=4, column=2, padx=10, pady=10) 
+button_expone= tk.Button(root, text="^", command=lambda:on_button_click_operation("^"))
+button_expone.grid(row=4, column=2, padx=10, pady=10) 
 
 button_makes= tk.Button(root, text="=", command=lambda:on_button_click_exe())
 button_makes.grid(row=4, column=3, padx=10, pady=10) 
@@ -169,10 +168,7 @@ button_extra.grid(row=5, column=0, padx=10, pady=10)
 button_pi= tk.Button(root, text="π", command=lambda:on_button_click_number("3.14"))
 button_pi.grid(row=5, column=1, padx=10, pady=10) 
 
-button_expone= tk.Button(root, text="^", command=lambda:on_button_click_operation("^"))
-button_expone.grid(row=5, column=2, padx=10, pady=10) 
 
-button_factorial= tk.Button(root, text="!", command=lambda:on_button_click_operation("!"))
-button_factorial.grid(row=5, column=3, padx=10, pady=10)
+
 
 root.mainloop()

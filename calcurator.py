@@ -7,19 +7,31 @@ operation =[]
 numbers_before =[]
 numbers_after = []
 number = 0
-
+float_number = 0
     
 
 def on_button_click_number(button_name):
     numbers_before.append(button_name)
+    if "." in operation:
+        operation.remove(".")
+        numbers_before.append(float_number + numbers_before[-1])
+
+        del numbers_before[-3:-1]
+       
+        
+
 
 
 def on_button_click_operation(button_name):
+    global number, numbers_before, numbers_after, float_number
     if button_name == "√" or  button_name =="!":
         pass
-    else:
+    
 
-        global number, numbers_before, numbers_after
+    elif button_name == ".":
+        float_number = numbers_before[-1] + "."
+        
+    else:
         number = float(''.join (numbers_before))
         numbers_before = []
         numbers_after.append(number)
@@ -150,7 +162,7 @@ button_plus.grid(row=3, column=3, padx=10, pady=10)
 button0= tk.Button(root, text=0, command=lambda:on_button_click_number("0"))
 button0.grid(row=4, column=0, padx=10, pady=10) 
 
-button_coma= tk.Button(root, text=",", command=lambda:on_button_click_operation(","))
+button_coma= tk.Button(root, text=".", command=lambda:on_button_click_operation("."))
 button_coma.grid(row=4, column=1, padx=10, pady=10) 
 
 button_expone= tk.Button(root, text="^", command=lambda:on_button_click_operation("^"))

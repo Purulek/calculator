@@ -9,7 +9,7 @@ numbers_after = []
 number = 0
 float_number = 0
     
-
+#appends new number to the calculation 
 def on_button_click_number(button_name):
     numbers_before.append(button_name)
     if "." in operation:
@@ -21,10 +21,10 @@ def on_button_click_number(button_name):
         
 
 
-
+# appends new opertion to eqution
 def on_button_click_operation(button_name):
     global number, numbers_before, numbers_after, float_number
-    if button_name == "√" or  button_name =="!":
+    if button_name == "√" or  button_name =="!" or button_name == "-":
         pass
     
 
@@ -37,7 +37,7 @@ def on_button_click_operation(button_name):
         numbers_after.append(number)
     operation.append(button_name)
 
-
+# command wich execute the calculation  
 def on_button_click_exe():
     global number, numbers_before, numbers_after
     number = float(''.join (numbers_before))
@@ -45,7 +45,6 @@ def on_button_click_exe():
     numbers_after.append(number)
     operators = {
         "+": operator.add,
-        "-": operator.sub,
         "*": operator.mul,
         "/": operator.truediv  
 
@@ -62,6 +61,9 @@ def on_button_click_exe():
             
         elif oper == "!":
             score += math.factorial(int(numbers_after[i]))
+
+        elif oper == "-":
+            score -= numbers_after[i]
             
         elif i == 0:
             i += 1
@@ -92,7 +94,7 @@ def on_button_click_restart():
     
 
 root = tk.Tk()
-root.title("Calcualtor")
+root.title("Calculator")
 
 
 

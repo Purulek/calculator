@@ -96,6 +96,9 @@ def on_button_click_exe():
     
     messagebox.showinfo("result", score)
 
+
+
+
 def on_button_click_restart():
     numbers_after.clear()
     numbers_before.clear()
@@ -107,7 +110,7 @@ root = tk.Tk()
 root.title("Calculator")
 
 
-
+# buttons in calcurtor
 button_reset= tk.Button(root, text="res", command=lambda:on_button_click_restart())
 button_reset.grid(row=0, column=0, padx=10, pady=10) 
 

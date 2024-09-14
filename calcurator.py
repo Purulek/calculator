@@ -15,7 +15,10 @@ def on_button_click_number(button_name):
     if "." in operation:
         operation.remove(".")
         numbers_before.append(float_number + numbers_before[-1])
-
+    elif "-" in operation:
+        operation.remove("-")
+        operation.append("+")
+        numbers_before[0] = "-" + numbers_before[0]
         del numbers_before[-3:-1]
        
         
@@ -24,13 +27,21 @@ def on_button_click_number(button_name):
 # appends new opertion to eqution
 def on_button_click_operation(button_name):
     global number, numbers_before, numbers_after, float_number
-    if button_name == "√" or  button_name =="!" or button_name == "-":
+    if button_name == "√" or  button_name =="!":
         pass
     
 
     elif button_name == ".":
         float_number = numbers_before[-1] + "."
-        
+    elif button_name == "-":
+        if len(numbers_before) > 1:
+            number = float(''.join (numbers_before))
+            numbers_before = []
+            numbers_after.append(number)
+        elif len(numbers_before) == 0:
+            pass
+
+
     else:
         number = float(''.join (numbers_before))
         numbers_before = []
@@ -45,13 +56,14 @@ def on_button_click_exe():
     numbers_after.append(number)
     operators = {
         "+": operator.add,
+        "-": operator.sub,
         "*": operator.mul,
         "/": operator.truediv  
 
     }
     i = 0
     score = 0
-    for oper in operation:
+    for oper  in operation:
 
         if oper == "√":
             score += math.sqrt(numbers_after[i])  
@@ -61,9 +73,7 @@ def on_button_click_exe():
             
         elif oper == "!":
             score += math.factorial(int(numbers_after[i]))
-
-        elif oper == "-":
-            score -= numbers_after[i]
+        
             
         elif i == 0:
             i += 1

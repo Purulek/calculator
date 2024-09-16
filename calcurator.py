@@ -15,12 +15,12 @@ def on_button_click_number(button_name):
     if "." in operation:
         operation.remove(".")
         numbers_before.append(float_number + numbers_before[-1])
+        del numbers_before[-3:-1]
     elif "-" in operation:
         operation.remove("-")
         operation.append("+")
-        numbers_before[0] = "-" + numbers_before[0]
-        del numbers_before[-3:-1]
-       
+        numbers_before[len(numbers_before)- 1] = "-" + numbers_before[len(numbers_before)- 1]
+
         
 
 
@@ -33,13 +33,7 @@ def on_button_click_operation(button_name):
 
     elif button_name == ".":
         float_number = numbers_before[-1] + "."
-    elif button_name == "-":
-        if len(numbers_before) > 1:
-            number = float(''.join (numbers_before))
-            numbers_before = []
-            numbers_after.append(number)
-        elif len(numbers_before) == 0:
-            pass
+
 
 
     else:
@@ -54,6 +48,7 @@ def on_button_click_exe():
     number = float(''.join (numbers_before))
     numbers_before = []
     numbers_after.append(number)
+    print (numbers_after)
     operators = {
         "+": operator.add,
         "-": operator.sub,
@@ -84,17 +79,12 @@ def on_button_click_exe():
             score = operators[oper](score, numbers_after[i])
             
         i += 1
-
         
-
-    
-    
-    
     numbers_after.clear()
     numbers_before.clear()
     operation.clear()
     
-    messagebox.showinfo("result", score)
+    messagebox.showinfo("result", "your's result is: {}".format( score))
 
 
 

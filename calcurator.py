@@ -17,8 +17,13 @@ def on_button_click_number(button_name):
         numbers_before.append(float_number + numbers_before[-1])
         del numbers_before[-3:-1]
     elif "-" in operation:
-        operation.remove("-")
-        operation.append("+")
+        print("_"*4, numbers_after)
+        if len(numbers_after) == 0 or len(operation) >= len(numbers_after):
+            print("_"*4, numbers_after)
+            operation.remove("-")   
+        else:
+            operation.remove("-")
+            operation.append("+")
         numbers_before[len(numbers_before)- 1] = "-" + numbers_before[len(numbers_before)- 1]
 
         
@@ -30,25 +35,31 @@ def on_button_click_operation(button_name):
     if button_name == "√" or  button_name =="!":
         pass
     
-
     elif button_name == ".":
         float_number = numbers_before[-1] + "."
 
-
-
     else:
-        number = float(''.join (numbers_before))
-        numbers_before = []
-        numbers_after.append(number)
+        try:
+            number = float(''.join (numbers_before))
+            numbers_before = []
+            numbers_after.append(number)
+            print(numbers_before,"!"*8)
+
+        except:
+            pass
     operation.append(button_name)
+
+
+
 
 # command wich execute the calculation  
 def on_button_click_exe():
     global number, numbers_before, numbers_after
+    print(numbers_after)
     number = float(''.join (numbers_before))
     numbers_before = []
     numbers_after.append(number)
-    print (numbers_after)
+    print(numbers_after)
     operators = {
         "+": operator.add,
         "-": operator.sub,
@@ -59,6 +70,8 @@ def on_button_click_exe():
     i = 0
     score = 0
     for oper  in operation:
+        print(numbers_after)
+        print(oper)
 
         if oper == "√":
             score += math.sqrt(numbers_after[i])  
@@ -79,7 +92,7 @@ def on_button_click_exe():
             score = operators[oper](score, numbers_after[i])
             
         i += 1
-        
+
     numbers_after.clear()
     numbers_before.clear()
     operation.clear()

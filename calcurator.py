@@ -54,48 +54,57 @@ def on_button_click_operation(button_name):
 # command wich execute the calculation  
 def on_button_click_exe():
     global number, numbers_before, numbers_after
-    
-    number = float(''.join (numbers_before))
-    numbers_before = []
-    numbers_after.append(number)
-    
+    i = 0
+    score = 0
     operators = {
         "+": operator.add,
         "*": operator.mul,
         "/": operator.truediv  
 
     }
-    i = 0
-    score = 0
-    for oper  in operation:
-        print(numbers_after)
-        print(oper)
+    try :
+        number = float(''.join (numbers_before))
+        numbers_before = []
+        numbers_after.append(number)
 
-        if oper == "√":
-            score += math.sqrt(numbers_after[i])  
-            
-        elif oper == "^":
-            score += (numbers_after[i]) ** numbers_after[i+1]
-            
-        elif oper == "!":
-            score += math.factorial(int(numbers_after[i]))
+    except:
+        messagebox.showinfo("error", "you too much points")
+
+    try :
+        for oper  in operation:
         
+            if oper == "√":
+                score += math.sqrt(numbers_after[i])  
+                
+            elif oper == "^":
+                score += (numbers_after[i]) ** numbers_after[i+1]
+                
+            elif oper == "!":
+                score += math.factorial(int(numbers_after[i]))
             
-        elif i == 0:
-            i += 1
-            score = operators[oper](numbers_after[0],numbers_after[i])
-            
+                
+            elif i == 0:
+                i += 1
+                score = operators[oper](numbers_after[0],numbers_after[i])
+                
 
-        elif i > 1:
-            score = operators[oper](score, numbers_after[i])
-            
-        i += 1
+            elif i > 1:
+                score = operators[oper](score, numbers_after[i])
+                
+            i += 1
+        messagebox.showinfo("result", "your's result is: {}".format( score))
+    except:
+        messagebox.showinfo("error", "you gave wrong numbers of resutls")
+
+        
+   
+  
 
     numbers_after.clear()
     numbers_before.clear()
     operation.clear()
     
-    messagebox.showinfo("result", "your's result is: {}".format( score))
+    
 
 
 

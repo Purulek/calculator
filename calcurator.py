@@ -3,6 +3,9 @@ from tkinter import messagebox
 import math
 import operator
 
+
+
+#def keywords wich are used in program
 operation =[]
 numbers_before =[]
 numbers_after = []
@@ -33,7 +36,6 @@ def on_button_click_operation(button_name):
     global number, numbers_before, numbers_after, float_number
     if button_name == "√" or  button_name =="!":
         pass
-    
     elif button_name == ".":
         float_number = numbers_before[-1] + "."
 
@@ -41,9 +43,7 @@ def on_button_click_operation(button_name):
         try:
             number = float(''.join (numbers_before))
             numbers_before = []
-            numbers_after.append(number)
-            
-
+            numbers_after.append(number)            
         except:
             pass
     operation.append(button_name)
@@ -95,10 +95,6 @@ def on_button_click_exe():
         messagebox.showinfo("result", "your's result is: {}".format( score))
     except:
         messagebox.showinfo("error", "you gave wrong numbers of resutls")
-
-        
-   
-  
 
     numbers_after.clear()
     numbers_before.clear()

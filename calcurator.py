@@ -21,8 +21,9 @@ def on_button_click_number(button_name):
         del numbers_before[-3:-1]
     elif "-" in operation:
         
-        if len(numbers_after) == 0 or len(operation) >= len(numbers_after): 
-            operation.remove("-")   
+        if len(numbers_after) == 0 or len(operation) > len(numbers_after): 
+            operation.remove("-")
+             
         else:
             operation.remove("-")
             operation.append("+")
@@ -87,11 +88,13 @@ def on_button_click_exe():
                 i += 1
                 score = operators[oper](numbers_after[0],numbers_after[i])
                 
+                
 
             elif i > 1:
                 score = operators[oper](score, numbers_after[i])
                 
             i += 1
+
         messagebox.showinfo("result", "your's result is: {}".format( score))
     except:
         messagebox.showinfo("error", "you gave wrong numbers of resutls")
@@ -101,10 +104,7 @@ def on_button_click_exe():
     operation.clear()
     
     
-
-
-
-
+# fuction wich rest opertions
 def on_button_click_restart():
     numbers_after.clear()
     numbers_before.clear()
